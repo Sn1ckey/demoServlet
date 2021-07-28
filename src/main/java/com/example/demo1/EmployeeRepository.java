@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,9 +102,12 @@ public class EmployeeRepository
         
         try
         {
+            Employee employee = new Employee();
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement( "delete from users where id=?" );
+            PreparedStatement ps = connection.prepareStatement(
+                    "update users set isDeleted=null where id=?" );
             ps.setInt( 1 , id );
+            
             status = ps.executeUpdate();
             
             connection.close();
@@ -111,6 +115,10 @@ public class EmployeeRepository
         catch ( SQLException e )
         {
             getSQLExceptionInfo( e );
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
         }
         return status;
     }
@@ -197,5 +205,10 @@ public class EmployeeRepository
         employee.setCountry( request.getParameter( "country" ) );
         employee.setPhoneNumber( request.getParameter( "phonenumber" ) );
         employee.setEmail( request.getParameter( "email" ) );
+    }
+    
+    public static void setEmployeeDelitedStatus( Employee employee , ResultSet rs )
+    {
+        employee.setDeleted( true );
     }
 }
