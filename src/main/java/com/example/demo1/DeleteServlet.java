@@ -10,11 +10,9 @@ import java.io.PrintWriter;
 @WebServlet( "/deleteServlet" )
 public class DeleteServlet extends HttpServlet
 {
-    
     protected void doGet( HttpServletRequest request , HttpServletResponse response )
     throws IOException
     {
-        
         PrintWriter out = response.getWriter();
         
         String sid = request.getParameter( "id" );

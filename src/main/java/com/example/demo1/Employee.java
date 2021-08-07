@@ -7,21 +7,10 @@ public class Employee
     private String name;
     private String surname;
     private String birthdate;
-    public String specialty;
     private String country;
     private String phoneNumber;
     private String email;
     private boolean isDeleted;
-    
-    public String getSpecialty()
-    {
-        return specialty;
-    }
-    
-    public void setSpecialty( String specialty )
-    {
-        this.specialty = specialty;
-    }
     
     public String getBirthdate()
     {
@@ -97,7 +86,6 @@ public class Employee
         return "Employee: [" + name +
                " " + surname +
                "; birthdate: " + birthdate +
-               "; specialty: " + specialty +
                "; email: " + email +
                "; country: " + country +
                "; phoneNumber: " + phoneNumber +

@@ -48,7 +48,6 @@ public class EmployeeRepository
             ps.setString( 1 , employee.getName() );
             ps.setString( 2 , employee.getSurname() );
             ps.setString( 3 , employee.getBirthdate() );
-            ps.setString( 4 , employee.getSpecialty() );
             ps.setString( 5 , employee.getCountry() );
             ps.setString( 6 , employee.getPhoneNumber() );
             ps.setString( 7 , employee.getEmail() );
@@ -78,7 +77,6 @@ public class EmployeeRepository
                 ps.setString( 1 , employee.getName() );
                 ps.setString( 2 , employee.getSurname() );
                 ps.setString( 3 , employee.getBirthdate() );
-                ps.setString( 4 , employee.getSpecialty() );
                 ps.setString( 5 , employee.getCountry() );
                 ps.setString( 6 , employee.getPhoneNumber() );
                 ps.setString( 7 , employee.getEmail() );
@@ -102,7 +100,6 @@ public class EmployeeRepository
         
         try
         {
-            Employee employee = new Employee();
             Connection connection = EmployeeRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement(
                     "update users set isDeleted=null where id=?" );
@@ -189,7 +186,6 @@ public class EmployeeRepository
         employee.setName( rs.getString( 2 ) );
         employee.setSurname( rs.getString( 3 ) );
         employee.setBirthdate( rs.getString( 4 ) );
-        employee.setSpecialty( rs.getString( 5 ) );
         employee.setCountry( rs.getString( 6 ) );
         employee.setPhoneNumber( rs.getString( 7 ) );
         employee.setEmail( rs.getString( 8 ) );
@@ -201,7 +197,6 @@ public class EmployeeRepository
         employee.setName( request.getParameter( "name" ) );
         employee.setSurname( request.getParameter( "surname" ) );
         employee.setBirthdate( request.getParameter( "birthdate" ) );
-        employee.setSpecialty( request.getParameter( "specialty" ) );
         employee.setCountry( request.getParameter( "country" ) );
         employee.setPhoneNumber( request.getParameter( "phonenumber" ) );
         employee.setEmail( request.getParameter( "email" ) );
