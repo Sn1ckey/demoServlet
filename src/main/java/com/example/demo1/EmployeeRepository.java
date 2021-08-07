@@ -74,6 +74,7 @@ public class EmployeeRepository
             try ( PreparedStatement ps = connection.prepareStatement(
                     "update users set name=?,surname=?,birthdate=?,country=?,phoneNumber=?,email=? where id=?" ) )
             {
+                
                 ps.setString( 1 , employee.getName() );
                 ps.setString( 2 , employee.getSurname() );
                 ps.setString( 3 , employee.getBirthdate() );
@@ -200,10 +201,5 @@ public class EmployeeRepository
         employee.setCountry( request.getParameter( "country" ) );
         employee.setPhoneNumber( request.getParameter( "phoneNumber" ) );
         employee.setEmail( request.getParameter( "email" ) );
-    }
-    
-    public static void setEmployeeDelitedStatus( Employee employee , ResultSet rs )
-    {
-        employee.setDeleted( true );
     }
 }
