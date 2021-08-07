@@ -8,19 +8,25 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet("/viewByIDServlet")
-public class ViewByIDServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        response.setContentType("text/html");
+@WebServlet( "/viewByIDServlet" )
+public class ViewByIDServlet extends HttpServlet
+{
+    protected void doGet( HttpServletRequest request , HttpServletResponse response )
+    throws IOException
+    {
+        
+        response.setContentType( "text/html" );
         PrintWriter out = response.getWriter();
-
-        String sid = request.getParameter("id");
-        int id = Integer.parseInt(sid);
-
-        Employee employee = EmployeeRepository.getEmployeeById(id);
-
-        out.print(employee);
+        
+        String sid = request.getParameter( "id" );
+        int id = Integer.parseInt( sid );
+        
+        Employee employee = EmployeeRepository.getEmployeeById( id );
+    
+        if ( employee == null )
+        { out.println( "There is no record with such id!" ); }
+        else
+        { out.print( employee ); }
         out.close();
     }
 }

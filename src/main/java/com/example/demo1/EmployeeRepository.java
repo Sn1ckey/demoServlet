@@ -44,13 +44,14 @@ public class EmployeeRepository
         {
             Connection connection = EmployeeRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement(
-                    "insert into users(name,surname,birthdate,country,phoneNumber,email) values (?,?,?,?,?,?)" );
+                    "insert into users(name,surname,birthdate,country,phoneNumber,email,isdeleted) values (?,?,?,?,?,?,?)" );
             ps.setString( 1 , employee.getName() );
             ps.setString( 2 , employee.getSurname() );
             ps.setString( 3 , employee.getBirthdate() );
             ps.setString( 4 , employee.getCountry() );
             ps.setString( 5 , employee.getPhoneNumber() );
             ps.setString( 6 , employee.getEmail() );
+            ps.setBoolean( 7 , employee.getIsDeleted() );
             
             status = ps.executeUpdate();
             connection.close();
@@ -74,7 +75,6 @@ public class EmployeeRepository
             try ( PreparedStatement ps = connection.prepareStatement(
                     "update users set name=?,surname=?,birthdate=?,country=?,phoneNumber=?,email=? where id=?" ) )
             {
-                
                 ps.setString( 1 , employee.getName() );
                 ps.setString( 2 , employee.getSurname() );
                 ps.setString( 3 , employee.getBirthdate() );
@@ -101,9 +101,20 @@ public class EmployeeRepository
         
         try
         {
+            Employee employee = new Employee();
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement(
-                    "update users set isDeleted=true where id=?" );
+            PreparedStatement ps = connection.prepareStatement( "select * from users where id=?" );
+            ps.setInt( 1 , id );
+            ResultSet rs = ps.executeQuery();
+            
+            if ( rs.next() )
+            {
+                setEmployee( employee , rs );
+                if ( employee.getIsDeleted() ) return 0;
+            }
+            
+            ps = connection.prepareStatement(
+                    "update users set isdeleted=true where id=?" );
             ps.setInt( 1 , id );
             
             status = ps.executeUpdate();
@@ -134,6 +145,7 @@ public class EmployeeRepository
             if ( rs.next() )
             {
                 setEmployee( employee , rs );
+                if ( employee.getIsDeleted() ) return null;
             }
             connection.close();
             
@@ -160,7 +172,8 @@ public class EmployeeRepository
             {
                 Employee employee = new Employee();
                 setEmployee( employee , rs );
-                listEmployees.add( employee );
+                if ( !employee.getIsDeleted() )
+                { listEmployees.add( employee ); }
             }
             connection.close();
             
@@ -190,6 +203,7 @@ public class EmployeeRepository
         employee.setCountry( rs.getString( 5 ) );
         employee.setPhoneNumber( rs.getString( 6 ) );
         employee.setEmail( rs.getString( 7 ) );
+        employee.setIsDeleted( rs.getBoolean( 8 ) );
     }
     
     
@@ -201,5 +215,6 @@ public class EmployeeRepository
         employee.setCountry( request.getParameter( "country" ) );
         employee.setPhoneNumber( request.getParameter( "phoneNumber" ) );
         employee.setEmail( request.getParameter( "email" ) );
+        employee.setEmail( request.getParameter( "isDeleted" ) );
     }
 }

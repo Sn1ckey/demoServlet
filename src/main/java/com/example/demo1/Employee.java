@@ -10,7 +10,7 @@ public class Employee
     private String country;
     private String phoneNumber;
     private String email;
-    private boolean isDeleted;
+    private boolean isDeleted = false;
     
     public String getBirthdate()
     {
@@ -60,12 +60,12 @@ public class Employee
         this.email = email;
     }
     
-    public boolean isDeleted()
+    public boolean getIsDeleted()
     {
         return isDeleted;
     }
     
-    public void setDeleted( boolean deleted )
+    public void setIsDeleted( boolean deleted )
     {
         isDeleted = deleted;
     }
@@ -83,12 +83,12 @@ public class Employee
     @Override
     public String toString()
     {
-        return "Employee: [" + name +
+        return "Employee: [*" + id +
+               "\t" + name +
                " " + surname +
                "; birthdate: " + birthdate +
                "; email: " + email +
-               "; country: " + country +
-               "; phoneNumber: " + phoneNumber +
-               "; isDeleted: " + isDeleted + "\n\n";
+               ";\ncountry: " + country +
+               "; phoneNumber: " + phoneNumber + "]";
     }
 }

@@ -10,9 +10,10 @@ import java.io.PrintWriter;
 @WebServlet( "/deleteServlet" )
 public class DeleteServlet extends HttpServlet
 {
-    protected void doGet( HttpServletRequest request , HttpServletResponse response )
+    protected void doDelete( HttpServletRequest request , HttpServletResponse response )
     throws IOException
     {
+        response.setContentType( "text/html" );
         PrintWriter out = response.getWriter();
         
         String sid = request.getParameter( "id" );
@@ -23,7 +24,6 @@ public class DeleteServlet extends HttpServlet
         if ( status > 0 )
         {
             out.print( "Record deleted successfully!" );
-            response.sendRedirect( "viewServlet" );
         }
         else
         {
