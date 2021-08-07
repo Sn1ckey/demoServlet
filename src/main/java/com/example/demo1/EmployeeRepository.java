@@ -44,13 +44,13 @@ public class EmployeeRepository
         {
             Connection connection = EmployeeRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement(
-                    "insert into users(name,surname,birthdate,specialty,country,phonenumber,email) values (?,?,?,?,?,?,?)" );
+                    "insert into users(name,surname,birthdate,country,phonenumber,email) values (?,?,?,?,?,?)" );
             ps.setString( 1 , employee.getName() );
             ps.setString( 2 , employee.getSurname() );
             ps.setString( 3 , employee.getBirthdate() );
-            ps.setString( 5 , employee.getCountry() );
-            ps.setString( 6 , employee.getPhoneNumber() );
-            ps.setString( 7 , employee.getEmail() );
+            ps.setString( 4 , employee.getCountry() );
+            ps.setString( 5 , employee.getPhoneNumber() );
+            ps.setString( 6 , employee.getEmail() );
             
             status = ps.executeUpdate();
             connection.close();
