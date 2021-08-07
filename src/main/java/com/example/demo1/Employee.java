@@ -83,12 +83,12 @@ public class Employee
     @Override
     public String toString()
     {
-        return "Employee: [*" + id +
-               "\t" + name +
+        return "Employee " + id +
+               "\n[" + name +
                " " + surname +
                "; birthdate: " + birthdate +
                "; email: " + email +
                ";\ncountry: " + country +
-               "; phoneNumber: " + phoneNumber + "]";
+               "; phoneNumber: " + phoneNumber + "]\n\n";
     }
 }

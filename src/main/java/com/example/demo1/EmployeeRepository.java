@@ -165,7 +165,7 @@ public class EmployeeRepository
         try
         {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement( "select * from users" );
+            PreparedStatement ps = connection.prepareStatement( "select * from users order by id" );
             ResultSet rs = ps.executeQuery();
             
             while ( rs.next() )
