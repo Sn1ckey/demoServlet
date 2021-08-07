@@ -13,7 +13,7 @@ public class EmployeeRepository
         
         Connection connection = null;
         String url = "jdbc:postgresql://localhost:5432/employee";
-        String user = "postgres";
+        String user = "snickey";
         String password = "postgres";
         
         try
