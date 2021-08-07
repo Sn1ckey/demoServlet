@@ -102,7 +102,7 @@ public class EmployeeRepository
         {
             Connection connection = EmployeeRepository.getConnection();
             PreparedStatement ps = connection.prepareStatement(
-                    "update users set isDeleted=null where id=?" );
+                    "update users set isDeleted=true where id=?" );
             ps.setInt( 1 , id );
             
             status = ps.executeUpdate();
