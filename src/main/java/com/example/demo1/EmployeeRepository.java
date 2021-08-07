@@ -72,7 +72,7 @@ public class EmployeeRepository
         {
             Connection connection = EmployeeRepository.getConnection();
             try ( PreparedStatement ps = connection.prepareStatement(
-                    "update users set name=?,surname=?,birthdate=?,specialty=?,country=?,phonenumber=?,email=? where id=?" ) )
+                    "update users set name=?,surname=?,birthdate=?, country=?,phonenumber=?,email=? where id=?" ) )
             {
                 ps.setString( 1 , employee.getName() );
                 ps.setString( 2 , employee.getSurname() );
