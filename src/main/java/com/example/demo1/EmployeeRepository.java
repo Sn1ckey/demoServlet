@@ -77,10 +77,10 @@ public class EmployeeRepository
                 ps.setString( 1 , employee.getName() );
                 ps.setString( 2 , employee.getSurname() );
                 ps.setString( 3 , employee.getBirthdate() );
-                ps.setString( 5 , employee.getCountry() );
-                ps.setString( 6 , employee.getPhoneNumber() );
-                ps.setString( 7 , employee.getEmail() );
-                ps.setInt( 8 , employee.getId() );
+                ps.setString( 4 , employee.getCountry() );
+                ps.setString( 5, employee.getPhoneNumber() );
+                ps.setString( 6 , employee.getEmail() );
+                ps.setInt( 7 , employee.getId() );
                 
                 status = ps.executeUpdate();
             }
