@@ -8,18 +8,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet( "/viewDeleted" )
-public class ViewDeleted extends HttpServlet
+@WebServlet("/viewDeletedServlet")
+public class ViewDeletedServlet extends HttpServlet
 {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
         List<Employee> list = EmployeeRepository.getAllDeletedEmployees();
 
-        for (Employee employee : list) {
-                out.print(employee);
+        for (Employee employee : list)
+        {
+            out.print(employee);
         }
         out.close();
     }
