@@ -185,6 +185,35 @@ public class EmployeeRepository
         
         return listEmployees;
     }
+
+    public static List <Employee> getAllDeletedEmployees()
+    {
+
+        List <Employee> listEmployees = new ArrayList <>();
+
+        try
+        {
+            Connection connection = EmployeeRepository.getConnection();
+            PreparedStatement ps = connection.prepareStatement( "select * from users order by id" );
+            ResultSet rs = ps.executeQuery();
+
+            while ( rs.next() )
+            {
+                Employee employee = new Employee();
+                setEmployee( employee , rs );
+                if ( employee.getIsDeleted() )
+                { listEmployees.add( employee ); }
+            }
+            connection.close();
+
+        }
+        catch ( SQLException e )
+        {
+            getSQLExceptionInfo( e );
+        }
+
+        return listEmployees;
+    }
     
     private static void getSQLExceptionInfo( SQLException e )
     {
