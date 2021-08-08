@@ -188,17 +188,14 @@ public class EmployeeRepository
         try
         {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("select * from users order by id");
+            PreparedStatement ps = connection.prepareStatement("select * from users where isdeleted =true order by id");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next())
             {
                 Employee employee = new Employee();
                 setEmployee(employee, rs);
-                if (employee.getIsDeleted())
-                {
-                    listEmployees.add(employee);
-                }
+                listEmployees.add(employee);
             }
             connection.close();
 
