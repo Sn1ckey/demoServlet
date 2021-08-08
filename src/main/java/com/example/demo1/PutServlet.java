@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 public class PutServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
