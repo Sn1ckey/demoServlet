@@ -8,13 +8,13 @@ import java.util.List;
 
 public class EmployeeRepository
 {
-    public static Connection getConnection()
+    public static Connection getConnection() throws SQLException
     {
 
         Connection connection = null;
-        String url = "jdbc:postgresql://localhost:5432/employee";
-        String user = "snickey";
-        String password = "postgres";
+        String url = "jdbc:mysql://localhost:3306/employee";
+        String user = "root";
+        String password = "rootRoot";
 
         try
         {
@@ -22,7 +22,7 @@ public class EmployeeRepository
             connection = DriverManager.getConnection(url, user, password);
             if (connection != null)
             {
-                System.out.println("Connected to the PostgreSQL server successfully.");
+                System.out.println("Connected to the MySQL server successfully.");
             } else
             {
                 System.out.println("Failed to make connection!");
