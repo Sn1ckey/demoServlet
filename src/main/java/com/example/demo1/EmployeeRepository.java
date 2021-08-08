@@ -234,8 +234,8 @@ public class EmployeeRepository
         employee.setSurname(request.getParameter("surname"));
         employee.setBirthdate(request.getParameter("birthdate"));
         employee.setCountry(request.getParameter("country"));
-        employee.setPhoneNumber(request.getParameter("phoneNumber"));
+        employee.setPhoneNumber(request.getParameter("phonenumber"));
         employee.setEmail(request.getParameter("email"));
-        employee.setEmail(request.getParameter("isDeleted"));
+
     }
 }

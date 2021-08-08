@@ -99,8 +99,8 @@ public class Employee
                 "\n[" + name +
                 " " + surname +
                 "; birthdate: " + birthdate +
-                "; email: " + email +
                 ";\ncountry: " + country +
-                "; phoneNumber: " + phoneNumber + "]\n\n";
+                "; phoneNumber: " + phoneNumber +
+                "; email: " + email + "]\n\n";
     }
 }
